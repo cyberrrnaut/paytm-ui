@@ -9,7 +9,7 @@ const cors= require("cors");
 
 const path = require("path");
 const dotenv = require("dotenv");
-const envPath = path.resolve(__dirname, "../../../.env");
+const envPath = path.resolve(__dirname, "../.env");
 dotenv.config({ path: envPath });
 
 app.use(cors());
