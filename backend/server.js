@@ -15,6 +15,10 @@ dotenv.config({ path: envPath });
 app.use(cors());
 app.use(express.json());
 
+app.get("/hello",(req,res)=>{
+    res.status(201).json({Hello:"World"});
+})
+
 app.use("/api/v1",mainRouter);
 
 
