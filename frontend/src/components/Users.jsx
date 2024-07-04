@@ -12,7 +12,7 @@ export const Users = ({id}) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/v1/user/bulk?filter=${filter}`, {
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/user/bulk?filter=${filter}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
           }
