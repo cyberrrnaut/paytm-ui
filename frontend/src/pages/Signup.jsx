@@ -7,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
 export const Signup = () => {
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ export const Signup = () => {
 
   const handleSignup = async () => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/user/signup`, {
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/user/signup`, {
         firstName,
         lastName,
         username: email,

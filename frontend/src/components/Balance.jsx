@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
+
 export const Balance = ({ amount }) => {
     const [balance, setBalance] = useState(0);
 
     useEffect(() => {
         const fetchBalance = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/balance`, {
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/account/balance`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`
                     }

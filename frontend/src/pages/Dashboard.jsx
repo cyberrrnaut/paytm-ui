@@ -19,7 +19,7 @@ const [id, setId] = useState();
               throw new Error("No token found");
             }
     
-            const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/user/me`, {
+            const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/user/me`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }

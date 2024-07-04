@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
+
 
 import React from 'react';
 import { BrowserRouter, Route, Navigate, Routes } from 'react-router-dom';
@@ -15,7 +14,9 @@ import { isAuthenticated } from './components/authService';
 
 
 const App = () => {
+ 
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route
@@ -42,6 +43,7 @@ const App = () => {
             isAuthenticated() ? <Navigate to="/dashboard" /> : <Navigate to="/signin" />
           }
         />
+        
         {/* Add a fallback route */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

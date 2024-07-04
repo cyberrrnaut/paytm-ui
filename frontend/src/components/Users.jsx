@@ -5,6 +5,8 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+
 export const Users = ({id}) => {
   const [users, setUsers] = useState([]);
   const [filter, setFilter] = useState("");
@@ -12,7 +14,7 @@ export const Users = ({id}) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/user/bulk?filter=${filter}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/user/bulk?filter=${filter}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
           }

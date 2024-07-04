@@ -19,7 +19,7 @@ export const SendMoney = () => {
   const handleTransfer = async () => {
     try {
       setLoading(true);
-      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/transfer`, {
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/account/transfer`, {
         to: id,
         amount: amount,
       }, {
