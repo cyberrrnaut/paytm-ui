@@ -1,4 +1,3 @@
-
 import express from 'express';
 import { User } from "../database/user.db.js";
 import { Account } from '../database/account.db.js';
@@ -9,8 +8,24 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { authMiddleware } from "../middleware/auth.middleware.js";
 
+
+
+// Convert import.meta.url to a path and get the directory name
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+
+
+
+// Load environment variables from the .env file
+
 const jwtKey = process.env.JWT_KEY;
+
+
+
+
+
 
 const zodSchema = z.object({
     username: z.string().email(),
