@@ -19,8 +19,8 @@ export const Signin = () => {
       console.log(import.meta.env.VITE_API_BASE_URL); // Output: https://paytm-backend-epv2.onrender.com/
       
       const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/user/signin`, {
-        username,
-        password
+        username:username,
+        password: password
       });
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
