@@ -1,20 +1,12 @@
+import mongoose from 'mongoose';
+import path from 'path';
+import dotenv from 'dotenv';
 
-const mongoose = require("mongoose");
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
-
-const path = require("path");
-const dotenv = require("dotenv");
-const envPath = path.resolve(__dirname, "../../.env");
-dotenv.config({ path: envPath });
-
-const connectDb = async ()=>{
+const connectDb = async () => {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("Db connected");
 }
 
-
-// connectDb();
-
-module.exports ={
-    connectDb
-}
+export { connectDb };

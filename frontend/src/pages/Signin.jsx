@@ -15,6 +15,9 @@ export const Signin = () => {
 
   const handleSignIn = async () => {
     try {
+
+      console.log(import.meta.env.VITE_API_BASE_URL); // Output: https://paytm-backend-epv2.onrender.com/
+      
       const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/user/signin`, {
         username,
         password
@@ -45,3 +48,5 @@ export const Signin = () => {
     </div>
   );
 };
+
+

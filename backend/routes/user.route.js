@@ -1,37 +1,31 @@
-//routes
-const express = require('express');
-const router = express.Router();
-// db
-const {User} = require("../database/user.db.js");
-const {Account} = require('../database/account.db.js');
-//zod
-const z =require("zod");
-const zodSchema= z.object({
-    username:z.string().email(),
-    firstName:z.string(),
-    lastName:z.string(),
-    password:z.string(),
+
+import express from 'express';
+import { User } from "../database/user.db.js";
+import { Account } from '../database/account.db.js';
+import z from "zod";
+import path from "path";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import { authMiddleware } from "../middleware/auth.middleware.js";
+
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
+const jwtKey = process.env.JWT_KEY;
+
+const zodSchema = z.object({
+    username: z.string().email(),
+    firstName: z.string(),
+    lastName: z.string(),
+    password: z.string(),
 });
-//------
+
 const updatedZodSchema = z.object({
     password: z.string().optional(),
     firstName: z.string().optional(),
     lastName: z.string().optional(),
-
 });
-//env
-const path = require("path");
-const dotenv = require("dotenv");
-const envPath = path.resolve(__dirname, "../../.env");
-dotenv.config({ path: envPath });
-//jwt
-const jwtKey = process.env.JWT_KEY ;
-const jwt = require("jsonwebtoken");
-//middleware
-const {authMiddleware} = require("../middleware/auth.middleware.js")
-//salt & hashing
-const bcrypt = require("bcrypt");
-const { log } = require('console');
+
+const router = express.Router();
 
 
 router.post("/signup",async(req,res)=>{
@@ -163,6 +157,4 @@ router.get("/bulk",authMiddleware,async(req,res)=>{
 })
 
 
-
-
-module.exports =router;
+export default router;

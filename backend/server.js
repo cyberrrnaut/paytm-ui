@@ -1,33 +1,28 @@
-const express = require("express");
-const mainRouter = require('./routes/index.route.js')
+import express from "express";
+import mainRouter from './routes/index.route.js';
+import { connectDb } from "./database/index.db.js";
+import { pingServer } from "./ping/pingserver.js";
+import cors from "cors";
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
+
+connectDb();
+
+setInterval(pingServer, 14 * 60 * 1000);
+
 const app = express();
-
-const cors= require("cors");
-
- const {connectDb} = require("./database/index.db.js");
- connectDb();
-
- import { pingServer } from "./ping/pingserver.js"
-
-
- setInterval(pingServer, 14 * 60 * 1000);
-
- 
-const path = require("path");
-const dotenv = require("dotenv");
-const envPath = path.resolve(__dirname, "../.env");
-dotenv.config({ path: envPath });
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/hello",(req,res)=>{
-    res.status(201).json({Hello:"World"});
+app.get("/hello", (req, res) => {
+    res.status(201).json({ Hello: "World" });
 })
 
-app.use("/api/v1",mainRouter);
+app.use("/api/v1", mainRouter);
 
-
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT, () => {
     console.log(`server started on port: ${process.env.PORT}`);
 });
