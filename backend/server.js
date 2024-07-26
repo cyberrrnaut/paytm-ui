@@ -7,6 +7,12 @@ const cors= require("cors");
  const {connectDb} = require("./database/index.db.js");
  connectDb();
 
+ import { pingServer } from "./ping/pingserver.js"
+
+
+ setInterval(pingServer, 14 * 60 * 1000);
+
+ 
 const path = require("path");
 const dotenv = require("dotenv");
 const envPath = path.resolve(__dirname, "../.env");
